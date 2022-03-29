@@ -1,0 +1,27 @@
+/* index.css */
+/* tailwind libarary */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* body */
+body {
+  font-family: 'Lato', sans-serif;
+  scroll-behavior: smooth;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.hide_scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* End of body */
