@@ -11,7 +11,7 @@ import { client } from "../client";
 import Spinner from "./Spinner";
 import { categories } from "../utils/data";
 
-const CreatePin = () => {
+const CreatePin = ({ user }) => {
   // useState => views data products => write[data]
   const [title, setTitle] = useState("");
   const [about, setAbout] = useState("");
@@ -61,6 +61,45 @@ const CreatePin = () => {
     } else {
       // but true file upload type?
       setWrongImageType(true);
+    }
+  };
+
+  // client save button handler
+  const savePin = () => {
+    // if save condition?
+    if (title && about && destination && imageAssets?._id && category) {
+      // doc type => 'pin'![Obj]
+      const doc = {
+        _type: "pin",
+        title,
+        about,
+        destination,
+        image: {
+          _type: "image",
+          asset: {
+            _type: "reference",
+            _ref: imageAssets?._id,
+          },
+        },
+        userId: user?._id,
+        postedBy: {
+          _type: "postedBy",
+          _ref: user?._id,
+        },
+        category,
+      };
+      // client good write? => go to data => storage => Where go to url? Go home here!
+      client.create(doc).then(() => {
+        // successfully go to url
+        navigate("/");
+      });
+    } else {
+      // save true!
+      setFields(true);
+      // but not save false? error message is showtime 2s!
+      setTimeout(() => {
+        setFields(false);
+      }, 2000);
     }
   };
 
@@ -120,6 +159,85 @@ const CreatePin = () => {
                 </button>
               </div>
             )}
+          </div>
+        </div>
+        {/* input fields */}
+        <div className="flex flex-1 flex-col gap-6 ml-5 w-full">
+          <div className="flex flex-col">
+            <div>
+              <p className="mb-2 ml-1 font-semibold text-gray-700 text-lg sm:text-xl">
+                Choose pin category
+              </p>
+              {/* select category */}
+              <select
+                onChange={(e) => setCategory(e.target.value)}
+                className="outline-none w-4/5 text-base text-gray-700 border-b-2 border-gray-200 hover:shadow-md hover:border-gray-300 p-2 mb-8 rounded-md cursor-pointer"
+              >
+                <option value="other" className="bg-white">
+                  Select Category
+                </option>
+                {/* categories list */}
+                {categories &&
+                  categories.map((category) => (
+                    <option
+                      value={category.name}
+                      className="text-base border-0 outline-none capitalize bg-white text-gray-700"
+                    >
+                      {category.name}
+                    </option>
+                  ))}
+              </select>
+            </div>
+
+            {/* title */}
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              placeholder="Add your title here!"
+              className="w-4/5 outline-none text-base sm:text-lg border-b-2 border-gray-200 p-2 focus:border-gray-400"
+            />
+
+            {/* about */}
+            <input
+              type="text"
+              value={about}
+              onChange={(e) => setAbout(e.target.value)}
+              placeholder="What is your pin about!"
+              className="w-4/5 outline-none text-base sm:text-lg border-b-2 border-gray-200 focus:border-gray-400 p-2 mt-2"
+            />
+
+            {/* destination */}
+            <input
+              type="text"
+              value={destination}
+              onChange={(e) => setDestination(e.target.value)}
+              placeholder="Add your destination here!"
+              className="w-4/5 outline-none text-base sm:text-lg border-b-2 border-gray-200 focus:border-gray-400 p-2 mt-2"
+            />
+          </div>
+
+          {/* user */}
+          {user && (
+            <div className="w-1/5 flex gap-2 my-2 items-center bg-white text-gray-700 rounded-lg">
+              <img
+                src={user?.image}
+                className="w-10 h-10 rounded-full"
+                alt=""
+              />
+              <p className="font-bold">{user?.userName}</p>
+            </div>
+          )}
+
+          {/* Save Pin Button */}
+          <div className="w-4/5 flex justify-end mt-1">
+            <button
+              type="button"
+              className="bg-gray-400 text-white font-bold rounded-md w-28 outline-none p-2 hover:shadow-md hover:bg-gray-500 duration-150 transition-all ease-in-out"
+              onClick={savePin}
+            >
+              Save Pin
+            </button>
           </div>
         </div>
       </div>

@@ -67,7 +67,7 @@ const NavBar = ({ user, searchTerm, setSearchTerm }) => {
           <Link to="create-pin">
             <button
               type="button"
-              className="w-36 min-w-36 p-2 text-base text-gray-700 border border-gray-300 rounded-md hover:shadow-xl duration-150 ease-in-out md:flex hidden"
+              className="w-36 min-w-36 p-2 justify-center text-base text-white bg-slate-400 border border-gray-300 rounded-md hover:bg-slate-500 duration-150 ease-in-out md:flex hidden"
             >
               Submit a photo
             </button>
@@ -79,7 +79,7 @@ const NavBar = ({ user, searchTerm, setSearchTerm }) => {
           {/* user profile */}
           <Link
             to={`user-profile/${user?._id}`}
-            className="flex items-center justify-center w-10 min-w-10 h-10 min-h-10 shadow-lg rounded-full bg-slate-500 ml-4"
+            className="flex items-center justify-center w-10 min-w-10 h-10 min-h-10 shadow-lg rounded-full ml-4"
           >
             <img src={user?.image} className="rounded-full" alt="Pic" />
           </Link>
@@ -95,7 +95,7 @@ const NavBar = ({ user, searchTerm, setSearchTerm }) => {
         >
           <RiHome7Fill fontSize={30} />
         </NavLink>
-        <div className="h-6 w-[1px] bg-slate-500"></div>
+        <div className="h-6 w-[1px] bg-slate-600"></div>
         {/* categories-items */}
         <div className="flex items-center w-full h-16 overflow-y-scroll hide_scrollbar relative">
           {/* categories-icon[left] */}

@@ -9,7 +9,7 @@ import { v4 as uuidv4 } from "uuid";
 
 // react-icons
 import { IoCloudDownload, IoArrowRedo } from "react-icons/io5";
-import { AiTwotoneDelete } from "react-icons/ai";
+import { AiTwotoneDelete, AiOutlineStar, AiFillStar } from "react-icons/ai";
 
 // client url
 import { client, urlFor } from "../client";
@@ -17,7 +17,7 @@ import { client, urlFor } from "../client";
 // export fetchUser!
 import { fetchUser } from "../utils/fetchUser";
 
-const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
+const Pin = ({ pin: { postedBy, image, _id, save } }) => {
   // pin => props
   // navigate
   const navigate = useNavigate();
@@ -67,18 +67,18 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
   };
 
   return (
-    <div className="m-2">
+    <div className="m-2 h-full border-gray-200 border-2 rounded-md">
       {/* image => products */}
       <div
-        className="relative cursor-zoom-in w-auto hover:shadow-lg rounded-lg overflow-hidden transition-all duration-500 ease-out"
+        className="relative cursor-pointer w-auto hover:shadow-lg rounded-lg overflow-hidden transition-all duration-500 ease-out"
         onMouseEnter={() => setPostHovered(true)}
         onMouseLeave={() => setPostHovered(false)}
         onClick={() => navigate(`/pin-detail/${_id}`)}
       >
         <img
-          src={urlFor(image).width(250).url()}
+          src={urlFor(image).width(300).height(210).url()}
           alt="images"
-          className="rounded-lg w-full"
+          className="rounded-lg w-full p-2"
         />
         {/* show the products hover => like, pin, info */}
         {postHovered && (
@@ -98,41 +98,26 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
               {alreadySaved ? (
                 <button
                   type="button"
-                  className="bg-gray-500 opacity-70 hover:opacity-100 text-white font-bold px-5 py-1 text-base rounded-3xl shahdow-md outline-none"
+                  className="opacity-70 hover:opacity-100 text-slate-900 font-bold px-2 py-1 text-xl shahdow-md outline-none"
                 >
-                  {save?.length} Saved
+                  <AiFillStar />
                 </button>
               ) : (
                 <button
                   type="button"
-                  className="bg-gray-500 opacity-70 hover:opacity-100 text-white font-bold px-5 py-1 text-base rounded-3xl shahdow-md outline-none"
+                  className="opacity-70 hover:opacity-100 text-slate-900 font-bold px-2 py-1 text-xl rounded-3xl shahdow-md outline-none"
                   onClick={(e) => {
                     e.stopPropagation();
                     savePin(_id);
                   }}
                 >
-                  Save
+                  <AiOutlineStar />
                 </button>
               )}
             </div>
             {/* Don't destination */}
-            <div className="flex justify-between items-center gap-2 w-full">
-              {destination && (
-                <a
-                  href={destination}
-                  target="_blank"
-                  rel="noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  className="bg-neutral-100 flex items-center gap-2 text-black font-bold p-2 pl-4 pr-4 rounded-full opacity-70 hover:opacity-100 hover:shadow-md"
-                >
-                  <IoArrowRedo />
-                  {/* url text 15 ↑ => ... but not 15 ↓ => view url text */}
-                  {destination.length > 15
-                    ? `${destination.slice(0, 15)}...`
-                    : destination}
-                </a>
-              )}
-              {/* buyer add product view id */}
+            <div className="flex justify-end items-center gap-2 w-full">
+              {/* buyer add product view id => And but something click delete button! */}
               {postedBy?._id === user?.googleId && (
                 <button
                   type="button"
@@ -140,7 +125,7 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
                     e.stopPropagation();
                     deletePin(_id);
                   }}
-                  className="bg-gray-500 p-2 opacity-70 hover:opacity-100 text-white font-bold text-base rounded-full shadow-md outline-none"
+                  className="bg-slate-600 p-2 opacity-70 hover:opacity-100 text-white font-bold text-base rounded-full shadow-md outline-none"
                 >
                   <AiTwotoneDelete />
                 </button>
@@ -152,7 +137,7 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
       {/* go to client profile url */}
       <Link
         to={`user-profile/${postedBy?._id}`}
-        className="flex gap-2 mt-2 items-center"
+        className="flex gap-2 mt-2 ml-2 items-center w-24"
       >
         {/* upload client show name */}
         <img
