@@ -10,8 +10,9 @@ import {
   BiChevronLeft,
 } from "react-icons/bi";
 import { RiHome7Fill } from "react-icons/ri";
+import { FaCartPlus } from "react-icons/fa";
 // logo
-import logo from "../assets/eShop-logo3.png";
+import logo from "../assets/eShop-logo4.png";
 // category arry[data => products]
 import { categories } from "../utils/data";
 
@@ -46,7 +47,7 @@ const NavBar = ({ user, searchTerm, setSearchTerm }) => {
       <div className="flex items-center w-full py-3">
         {/* Logo */}
         <Link to="/">
-          <img src={logo} alt="Logo" className="w-40 cursor-pointer" />
+          <img src={logo} alt="Logo" className="w-20 cursor-pointer" />
         </Link>
 
         {/* Search Box */}
@@ -64,13 +65,11 @@ const NavBar = ({ user, searchTerm, setSearchTerm }) => {
 
         {/* Add Button */}
         <div className="flex justify-center items-center">
-          <Link to="create-pin">
-            <button
-              type="button"
-              className="w-36 min-w-36 p-2 justify-center text-base text-white bg-slate-400 border border-gray-300 rounded-md hover:bg-slate-500 duration-150 ease-in-out md:flex hidden"
-            >
-              Submit a photo
-            </button>
+          <Link
+            to="create-pin"
+            className="p-2 justify-center text-base text-slate-400 border-none hover:text-slate-500 rounded-md duration-150 ease-in-out md:flex hidden"
+          >
+            <FaCartPlus className="w-9 h-5" />
             {/* small screen add button */}
             <div className="bg-black w-10 h-10 rounded-md md:hidden flex items-center justify-center">
               <BiPlus fontSize={24} className="text-white" />
