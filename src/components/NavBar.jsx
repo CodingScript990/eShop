@@ -10,7 +10,11 @@ import {
   BiChevronLeft,
 } from "react-icons/bi";
 import { RiHome7Fill } from "react-icons/ri";
+// add pin
 import { FaCartPlus } from "react-icons/fa";
+// basket
+import { GiShoppingCart } from "react-icons/gi";
+
 // logo
 import logo from "../assets/eShop-logo4.png";
 // category arry[data => products]
@@ -63,24 +67,38 @@ const NavBar = ({ user, searchTerm, setSearchTerm }) => {
           />
         </div>
 
-        {/* Add Button */}
+        {/* Product Button */}
         <div className="flex justify-center items-center">
+          {/* basket button */}
           <Link
-            to="create-pin"
-            className="p-2 justify-center text-base text-slate-400 border-none hover:text-slate-500 rounded-md duration-150 ease-in-out md:flex hidden"
+            to="basket-pin"
+            className="p-2 justify-center font-bold text-base text-slate-400 border-none hover:text-slate-700 rounded-md duration-150 ease-in-out md:flex hidden"
           >
-            <FaCartPlus className="w-9 h-5" />
-            {/* small screen add button */}
-            <div className="bg-black w-10 h-10 rounded-md md:hidden flex items-center justify-center">
-              <BiPlus fontSize={24} className="text-white" />
+            <div class="flex flex-row font-bold text-lg">
+              <GiShoppingCart className="w-9 h-8" />0
             </div>
           </Link>
+          {/* Add product */}
+          {user?._id !== null ? (
+            <Link
+              to="create-pin"
+              className="p-2 justify-center font-bold text-base text-slate-400 border-none hover:text-slate-700 rounded-md duration-150 ease-in-out md:flex hidden"
+            >
+              <FaCartPlus className="w-9 h-6" />
+            </Link>
+          ) : null}
           {/* user profile */}
           <Link
             to={`user-profile/${user?._id}`}
-            className="flex items-center justify-center w-10 min-w-10 h-10 min-h-10 shadow-lg rounded-full ml-4"
+            className="flex items-center justify-center w-10 min-w-10 h-10 min-h-10 rounded-full ml-4"
           >
-            <img src={user?.image} className="rounded-full" alt="Pic" />
+            {user?._id !== null ? (
+              <img src={user?.image} className="rounded-full" alt="Pic" />
+            ) : (
+              <Link to="/login" className="text-slate-600 text-lg font-bold ">
+                Login
+              </Link>
+            )}
           </Link>
         </div>
       </div>

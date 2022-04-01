@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 // react-icons
 import { IoCloudDownload, IoSend } from "react-icons/io5";
+import { AiTwotoneDelete } from "react-icons/ai";
 // router
 import { Link, useParams } from "react-router-dom";
 // uuid
@@ -15,6 +16,8 @@ import Spinner from "./Spinner";
 
 const PinDetail = ({ user }) => {
   // props user
+  // comment datetime
+  const cmtDate = (date) => date.toISOString().slice(0, 10);
   // Pin data State
   const [pins, setPins] = useState(null);
   const [pinDetail, setPinDetail] = useState(null);
@@ -23,6 +26,34 @@ const PinDetail = ({ user }) => {
 
   // pinId value
   const { pinId } = useParams();
+
+  // Add comment event handler
+  const addComment = () => {
+    if (comment) {
+      // set comment value
+      setAddingComment(true);
+      // client api => pinId
+      client
+        .patch(pinId)
+        .setIfMissing({ comments: [] })
+        .insert("after", "comments[-1]", [
+          {
+            comment,
+            _key: uuidv4,
+            postedBy: {
+              _type: "postedBy",
+              _ref: user._id,
+            },
+          },
+        ])
+        .commit()
+        .then(() => {
+          fetchPinDetail();
+          setComment("");
+          setAddingComment(false);
+        });
+    }
+  };
 
   // fetchPinDetail function
   const fetchPinDetail = () => {
@@ -57,45 +88,150 @@ const PinDetail = ({ user }) => {
   if (!pinDetail) return <Spinner msg={"Loading pindetail!"} />;
 
   return (
-    <div
-      className="flex xl:flex-row flex-col m-auto bg-white p-4"
-      style={{ maxWidth: "1500px", borderRadius: "35px" }}
-    >
-      {/* image */}
-      <div className="flex justify-center items-center md:items-start flex-initial">
-        <img
-          src={pinDetail?.image && urlFor(pinDetail.image).url()}
-          alt="img"
-          className="rounded-3xl rounded-b-lg"
-        />
-      </div>
-
-      {/* pin details */}
-      <div className="w-full p-5 flex-1 xl:min-w-620">
-        {/* url destination & download */}
-        <div className="flex justify-between items-center">
-          <div className="flex gap-2 items-center">
-            <a
-              href={`${pinDetail?.image?.asset?.url}`}
-              download
-              onClick={(e) => e.stopPropagation()}
-              className="bg-white w-9 h-9 rounded-full flex items-center justify-center text-dark text-xl opacity-75 hover:opacity-100 hover:shadow-md outline-none"
-            >
-              <IoCloudDownload />
-            </a>
+    <>
+      <div className="flex flex-col w-full h-full">
+        <div
+          className="flex xl:flex-row flex-row w-full h-full bg-white p-4"
+          style={{
+            maxWidth: "1500px",
+            borderRadius: "35px",
+          }}
+        >
+          {/* image */}
+          <div className="flex justify-center items-center md:items-start flex-initial">
+            <img
+              src={pinDetail?.image && urlFor(pinDetail.image).width(650).url()}
+              alt="img"
+              className="rounded-3xl rounded-b-lg"
+            />
           </div>
-          <a href={pinDetail?.destination} target="_blank" rel="noreferrer">
-            {pinDetail?.destination.length > 15
-              ? `${pinDetail?.destination.slice(0, 15)}...`
-              : pinDetail?.destination}
-          </a>
+
+          {/* pin details */}
+          <div className="relative w-full p-3 flex-1 xl:min-w-620 flex justify-center items-center">
+            {/* title */}
+            <div className="flex flex-col justify-evenly relative leading-10 w-5/6 h-510 border-4 rounded-lg p-5">
+              <h1 className="text-4xl mt-3 break-words text-slate-800 font-sans font-bold">
+                {pinDetail?.title}
+              </h1>
+              <p className="mt-3 text-2xl font-mono">{pinDetail?.about}</p>
+              {/* url destination */}
+              <div className="flex justify-start items-center font-bold text-lg">
+                Official URL :
+                <a
+                  href={pinDetail?.destination}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="ml-2 font-normal"
+                >
+                  {pinDetail?.destination.length > 15
+                    ? `${pinDetail?.destination.slice(0, 33)}`
+                    : pinDetail?.destination}
+                </a>
+              </div>
+              {/* product-form */}
+              <form>
+                <div className="flex font-bold text-lg">
+                  Quantity : {/* Choice amount */}
+                  <select className="items-center border-2 border-gray-400 rounded outline-none text-slate-900 ml-3">
+                    <option value="0" selected>
+                      - Please Choose -
+                    </option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                  </select>
+                </div>
+                {/* Seller info */}
+                <div className="flex items-center text-lg font-bold mt-7">
+                  Seller :
+                  <Link
+                    to={`user-profile/${pinDetail?.postedBy?._id}`}
+                    className="flex gap-2 ml-2 items-center bg-white rounded-lg "
+                  >
+                    {pinDetail?.postedBy?.userName}
+                  </Link>
+                </div>
+                {/* buy button */}
+                <div className="flex justify-center mt-12">
+                  <button
+                    type="button"
+                    class="w-508 h-12 bg-slate-500 text-white text-lg hover:bg-slate-600 font-bold rounded cursor-pointer"
+                  >
+                    Buying
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
-        {/* title */}
-        <div>
-          <h1 className="text-4xl font-bold mt-3 break-words"></h1>
+        {/* Comments */}
+        <div style={{ width: "980px", margin: "0 auto 50px" }}>
+          <h2 className="mt-5 mb-2 text-2xl">
+            {pinDetail.comments.length > 0
+              ? `Comments(${pinDetail.comments.length})`
+              : "0"}
+          </h2>
+          <hr />
+          {/* container to post the comment */}
+          <div className="flex flex-wrap items-center mt-6 gap-3">
+            <Link to={`user-profile/${pinDetail?.postedBy?._id}`}>
+              <img
+                src={pinDetail.postedBy?.image}
+                className="w-10 h-10 rounded-full cursor-pointer"
+                alt="user"
+              />
+            </Link>
+            {/* comment-write */}
+            <input
+              type="text"
+              className="flex-1 border-gray-100 outline-none border-2 p-2 rounded-md focus:border-gray-300"
+              placeholder="Please feel free to leave a review of the product!"
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+            />
+            <IoSend
+              fontSize={25}
+              className="cursor-pointer text-slate-500 hover:text-slate-600"
+              onClick={addComment}
+            />
+          </div>
+          <div className="max-h-370 overflow-y-auto hide_scrollbar">
+            {pinDetail?.comments?.map((comment, i) => (
+              <div
+                className="flex gap-2 mt-5 items-center bg-white rounded-lg"
+                key={i}
+              >
+                {/* user image => profile */}
+                <img
+                  src={comment.postedBy.image}
+                  alt="user-img"
+                  className="w-10 h-10 rounded-full object-cover cursor-pointer"
+                />
+                {/* user name & user comment */}
+                <div
+                  className="w-full flex flex-row justify-between"
+                  style={{ fontSize: "17px" }}
+                >
+                  <p className="pl-2">{comment.comment}</p>
+                  <p className="pr-2">{cmtDate(new Date())}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+      {/* recommened */}
+      {/* {pins?.length > 0 ? (
+        <>
+          <h2 className="text-center font-bold text-2xl mt-8 mb-4">
+            More Like This
+          </h2>
+          <MasonryLayout pins={pins} />
+        </>
+      ) : (
+        <Spinner msg={"Loading More Pins"} />
+      )} */}
+    </>
   );
 };
 
