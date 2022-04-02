@@ -1,5 +1,5 @@
 // PinDetail.jsx
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 // react-icons
 import { IoCloudDownload, IoSend } from "react-icons/io5";
 import { AiTwotoneDelete } from "react-icons/ai";
@@ -13,6 +13,8 @@ import { client, urlFor } from "../client";
 import MasonryLayout from "./MasonryLayout";
 import { pinDeatilMorePinQuery, pinDetailQuery } from "../utils/data";
 import Spinner from "./Spinner";
+// export fetchUser!
+import { fetchUser } from "../utils/fetchUser";
 
 const PinDetail = ({ user }) => {
   // props user
@@ -23,6 +25,9 @@ const PinDetail = ({ user }) => {
   const [pinDetail, setPinDetail] = useState(null);
   const [comment, setComment] = useState("");
   const [addingComment, setAddingComment] = useState(false);
+
+  // user
+  const cmtUser = fetchUser();
 
   // pinId value
   const { pinId } = useParams();
@@ -167,9 +172,9 @@ const PinDetail = ({ user }) => {
         {/* Comments */}
         <div style={{ width: "980px", margin: "0 auto 50px" }}>
           <h2 className="mt-5 mb-2 text-2xl">
-            {pinDetail.comments.length > 0
-              ? `Comments(${pinDetail.comments.length})`
-              : "0"}
+            {/* comments length 0? => toString "0" not 0? comments length! */}
+            Comments(
+            {pinDetail.comments?.length > 0 ? pinDetail.comments.length : "0"})
           </h2>
           <hr />
           {/* container to post the comment */}

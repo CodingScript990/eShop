@@ -129,7 +129,7 @@ const NavBar = ({ user, searchTerm, setSearchTerm }) => {
             className="flex items-center text-center w-full overflow-y-scroll hide_scrollbar scroll-smooth duration-150 ease-in-out"
             ref={scrollRef}
           >
-            {categories.slice(0, categories.length - 1).map((category) => (
+            {categories.slice(0, categories.length).map((category) => (
               <NavLink
                 to={`/category/${category.name}`}
                 key={category.name}
