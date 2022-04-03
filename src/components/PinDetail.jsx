@@ -146,6 +146,10 @@ const PinDetail = ({ user }) => {
                     <option value="3">3</option>
                   </select>
                 </div>
+                {/* price */}
+                <div class="font-bold text-lg mt-6">
+                  Price : ${pinDetail?.price}
+                </div>
                 {/* Seller info */}
                 <div className="flex items-center text-lg font-bold mt-7">
                   Seller :

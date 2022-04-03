@@ -16,6 +16,7 @@ const CreatePin = ({ user }) => {
   const [title, setTitle] = useState("");
   const [about, setAbout] = useState("");
   const [destination, setDestination] = useState("");
+  const [price, setPrice] = useState("");
   // loading
   const [loading, setLoading] = useState(false);
   // field, category State
@@ -74,6 +75,7 @@ const CreatePin = ({ user }) => {
         title,
         about,
         destination,
+        price,
         image: {
           _type: "image",
           asset: {
@@ -188,7 +190,6 @@ const CreatePin = ({ user }) => {
                   ))}
               </select>
             </div>
-
             {/* title */}
             <input
               type="text"
@@ -197,7 +198,6 @@ const CreatePin = ({ user }) => {
               placeholder="Add your title here!"
               className="w-4/5 outline-none text-base sm:text-lg border-b-2 border-gray-200 p-2 focus:border-gray-400"
             />
-
             {/* about */}
             <input
               type="text"
@@ -206,13 +206,20 @@ const CreatePin = ({ user }) => {
               placeholder="What is your pin about!"
               className="w-4/5 outline-none text-base sm:text-lg border-b-2 border-gray-200 focus:border-gray-400 p-2 mt-2"
             />
-
-            {/* destination */}
+            {/* destination(url) */}
             <input
               type="text"
               value={destination}
               onChange={(e) => setDestination(e.target.value)}
               placeholder="Add your destination here!"
+              className="w-4/5 outline-none text-base sm:text-lg border-b-2 border-gray-200 focus:border-gray-400 p-2 mt-2"
+            />
+            {/* price */}
+            <input
+              type="text"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+              placeholder="Wrtie price!"
               className="w-4/5 outline-none text-base sm:text-lg border-b-2 border-gray-200 focus:border-gray-400 p-2 mt-2"
             />
           </div>

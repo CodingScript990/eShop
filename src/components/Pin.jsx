@@ -17,7 +17,7 @@ import { client, urlFor } from "../client";
 // export fetchUser!
 import { fetchUser } from "../utils/fetchUser";
 
-const Pin = ({ pin: { postedBy, image, _id, save } }) => {
+const Pin = ({ pin: { postedBy, image, _id, save, price } }) => {
   // pin => props
   // navigate
   const navigate = useNavigate();
@@ -134,19 +134,24 @@ const Pin = ({ pin: { postedBy, image, _id, save } }) => {
           </div>
         )}
       </div>
-      {/* go to client profile url */}
-      <Link
-        to={`user-profile/${postedBy?._id}`}
-        className="flex gap-2 mt-2 ml-2 items-center w-24"
-      >
-        {/* upload client show name */}
-        <img
-          src={postedBy?.image}
-          alt="user-img"
-          className="w-8 h-8 rounded-full object-cover"
-        />
-        <p className="font-semibold capitalize">{postedBy?.userName}</p>
-      </Link>
+      {/* info */}
+      <div className="flex flex-row justify-between items-center">
+        {/* go to client profile url */}
+        <Link
+          to={`user-profile/${postedBy?._id}`}
+          className="flex gap-2 mt-2 ml-2 items-center w-24"
+        >
+          {/* upload client show name */}
+          <img
+            src={postedBy?.image}
+            alt="user-img"
+            className="w-8 h-8 rounded-full object-cover"
+          />
+          <p className="font-semibold capitalize">{postedBy?.userName}</p>
+        </Link>
+        {/* price */}
+        <p className="text-gray-700 font-bold text-lg mr-3">${price}</p>
+      </div>
     </div>
   );
 };
