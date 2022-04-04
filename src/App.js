@@ -18,10 +18,13 @@ const App = () => {
     if (!user) navigate("/login");
   }, []);
   return (
-    <Routes>
-      <Route path="login" element={<Login />} />
-      <Route path="/*" element={<Home />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route path="login" element={<Login />} />
+        <Route path="/*" element={<Home />} />
+      </Routes>
+      <Footer />
+    </>
   );
 };
 

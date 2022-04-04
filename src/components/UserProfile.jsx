@@ -66,10 +66,7 @@ const UserProfile = () => {
         // setPins data
         setPins(data);
       });
-    }
-
-    // saved
-    if (text === "saved") {
+    } else {
       // savePinsQuery => userId
       const savedPinsQuery = userSavedPinsQuery(userId);
       // client => saved Pins
@@ -171,16 +168,18 @@ const UserProfile = () => {
           {/* displaying the pins */}
           <h2 className="text-3xl font-bold mb-2 ml-2 text-gray-800 font-mono">
             {/* products title */}
-            {activeBtn === "created" ? "Goods Sale" : "Saved Products"}
+            {activeBtn === "created" ? "Goods Sale" : ""}
+            {activeBtn === "saved" ? "Saved Products" : ""}
           </h2>
           <hr className="mb-2" />
+          {/* deisplaying pins */}
           {pins?.length ? (
             <div className="px-2">
               <MasonryLayout pins={pins} />
             </div>
           ) : (
             <div className="flex justify-center items-center font-bold w-full text-xl mt-2">
-              No Pins Found!
+              No Pins Found
             </div>
           )}
         </div>

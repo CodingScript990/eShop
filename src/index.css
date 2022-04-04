@@ -10,21 +10,22 @@
   box-sizing: border-box;
 }
 
-html {
-  width: 100vw;
-  height: 100vh;
-}
-
-/* body */
-body {
+html,body {
   width: 100vw;
   height: 100vh;
   font-family: 'Lato', sans-serif;
   scroll-behavior: smooth;
+  position: relative;
 }
 
 body::-webkit-scrollbar {
   display: none;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .hide_scrollbar::-webkit-scrollbar {

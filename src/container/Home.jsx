@@ -36,9 +36,12 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="flex flex-col h-full transition-height duration-75 ease-out">
+    <div
+      className="flex flex-col transition-height duration-75 ease-out"
+      style={{ height: "fit-content" }}
+    >
       <div
-        className="pb-2 flex-1 h-screen overflow-y-scroll hide_scrollbar"
+        className="pb-2 flex-1 h-full overflow-y-scroll hide_scrollbar"
         ref={scrollRef}
       >
         <Routes>

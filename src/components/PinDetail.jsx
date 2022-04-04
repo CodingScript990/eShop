@@ -108,12 +108,14 @@ const PinDetail = ({ user }) => {
           <div className="relative w-full p-3 flex-1 xl:min-w-620 flex justify-center items-center">
             {/* title */}
             <div className="flex flex-col justify-evenly relative leading-10 w-5/6 h-510 border-4 rounded-lg p-5">
-              <h1 className="text-4xl mt-3 break-words text-slate-800 font-sans font-bold">
+              <h1 className="text-4xl ml-14 break-words text-slate-800 font-sans font-bold">
                 {pinDetail?.title}
               </h1>
-              <p className="mt-3 text-2xl font-mono">{pinDetail?.about}</p>
+              <p className="mt-3 ml-14 text-2xl font-mono">
+                {pinDetail?.about}
+              </p>
               {/* url destination */}
-              <div className="flex justify-start items-center font-bold text-lg">
+              <div className="flex justify-start ml-14 items-center font-bold text-lg">
                 Official URL :
                 <a
                   href={pinDetail?.destination}
@@ -128,7 +130,7 @@ const PinDetail = ({ user }) => {
               </div>
               {/* product-form */}
               <form>
-                <div className="flex font-bold text-lg">
+                <div className="flex font-bold text-lg ml-14">
                   Quantity : {/* Choice amount */}
                   <select className="items-center border-2 border-gray-400 rounded outline-none text-slate-900 ml-3">
                     <option value="0" selected>
@@ -140,11 +142,11 @@ const PinDetail = ({ user }) => {
                   </select>
                 </div>
                 {/* price */}
-                <div class="font-bold text-lg mt-6">
+                <div class="font-bold text-lg mt-6 ml-14">
                   Price : ${pinDetail?.price}
                 </div>
                 {/* Seller info */}
-                <div className="flex items-center text-lg font-bold mt-7">
+                <div className="flex items-center text-lg font-bold mt-7 ml-14">
                   Seller :
                   <Link
                     to={`user-profile/${pinDetail?.postedBy?._id}`}
