@@ -1,10 +1,9 @@
 // Home.jsx
 import React, { useState, useRef, useEffect } from "react";
 // router
-import { Link, Route, Routes } from "react-router-dom";
-
+import { Route, Routes } from "react-router-dom";
 // client
-import { client, Client } from "../client";
+import { client } from "../client";
 import { userQuery } from "../utils/data";
 import Pin from "./Pin";
 

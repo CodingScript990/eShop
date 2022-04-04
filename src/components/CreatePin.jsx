@@ -68,7 +68,14 @@ const CreatePin = ({ user }) => {
   // client save button handler
   const savePin = () => {
     // if save condition?
-    if (title && about && destination && imageAssets?._id && category) {
+    if (
+      title &&
+      about &&
+      destination &&
+      price &&
+      imageAssets?._id &&
+      category
+    ) {
       // doc type => 'pin'![Obj]
       const doc = {
         _type: "pin",
@@ -172,10 +179,12 @@ const CreatePin = ({ user }) => {
               </p>
               {/* select category */}
               <select
+                id="categoryList"
                 onChange={(e) => setCategory(e.target.value)}
                 className="outline-none w-4/5 text-base text-gray-700 border-b-2 border-gray-200 hover:shadow-md hover:border-gray-300 p-2 mb-8 rounded-md cursor-pointer"
+                required
               >
-                <option value="other" className="bg-white">
+                <option value="other" className="bg-white" hidden>
                   Select Category
                 </option>
                 {/* categories list */}

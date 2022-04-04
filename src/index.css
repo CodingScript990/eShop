@@ -10,8 +10,15 @@
   box-sizing: border-box;
 }
 
+html {
+  width: 100vw;
+  height: 100vh;
+}
+
 /* body */
 body {
+  width: 100vw;
+  height: 100vh;
   font-family: 'Lato', sans-serif;
   scroll-behavior: smooth;
 }

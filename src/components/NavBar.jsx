@@ -3,12 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 // router
 import { Link, NavLink, useNavigate } from "react-router-dom";
 // react-icons
-import {
-  BiSearchAlt,
-  BiPlus,
-  BiChevronRight,
-  BiChevronLeft,
-} from "react-icons/bi";
+import { BiSearchAlt, BiChevronRight, BiChevronLeft } from "react-icons/bi";
 import { RiHome7Fill } from "react-icons/ri";
 // add pin
 import { FaCartPlus } from "react-icons/fa";
@@ -33,6 +28,8 @@ const NavBar = ({ user, searchTerm, setSearchTerm }) => {
   const navigate = useNavigate();
   // scroll State
   const [isScroll, setIsScroll] = useState(false);
+  // use effect
+  useEffect(() => {}, [isScroll]);
   // scroll Ref
   const scrollRef = useRef();
   // scroll event handler

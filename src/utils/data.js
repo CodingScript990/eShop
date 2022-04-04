@@ -124,6 +124,7 @@ export const searchQuery = (searchTerm) => {
     },
     _id,
     destination,
+    price,
     postedBy -> {
       _id,
       userName,
@@ -190,7 +191,8 @@ export const pinDetailQuery = (pinId) => {
       postedBy -> {
         _id,
         userName,
-        image
+        image,
+        price
       },
     },
     comments[] {
@@ -210,7 +212,7 @@ export const pinDetailQuery = (pinId) => {
 // export pinDeatilMorePinQuery
 export const pinDeatilMorePinQuery = (pin) => {
   // query type
-  const query = `*[_type == "pin" && category == '${pin.category}' && _id] {
+  const query = `*[_type == "pin" && category == '${pin.category}' && _id != '${pin._id}'] {
     image {
       asset -> {
         url
@@ -229,7 +231,8 @@ export const pinDeatilMorePinQuery = (pin) => {
       postedBy -> {
         _id,
         userName,
-        image
+        image,
+        price
       }
     }
   }`;

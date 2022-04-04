@@ -66,7 +66,10 @@ const UserProfile = () => {
         // setPins data
         setPins(data);
       });
-    } else {
+    }
+
+    // saved
+    if (text === "saved") {
       // savePinsQuery => userId
       const savedPinsQuery = userSavedPinsQuery(userId);
       // client => saved Pins
@@ -167,7 +170,8 @@ const UserProfile = () => {
           </div>
           {/* displaying the pins */}
           <h2 className="text-3xl font-bold mb-2 ml-2 text-gray-800 font-mono">
-            Goods Sale
+            {/* products title */}
+            {activeBtn === "created" ? "Goods Sale" : "Saved Products"}
           </h2>
           <hr className="mb-2" />
           {pins?.length ? (

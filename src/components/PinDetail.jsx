@@ -1,8 +1,7 @@
 // PinDetail.jsx
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 // react-icons
-import { IoCloudDownload, IoSend } from "react-icons/io5";
-import { AiTwotoneDelete } from "react-icons/ai";
+import { IoSend } from "react-icons/io5";
 // router
 import { Link, useParams } from "react-router-dom";
 // uuid
@@ -10,11 +9,8 @@ import { v4 as uuidv4 } from "uuid";
 
 // export url
 import { client, urlFor } from "../client";
-import MasonryLayout from "./MasonryLayout";
 import { pinDeatilMorePinQuery, pinDetailQuery } from "../utils/data";
 import Spinner from "./Spinner";
-// export fetchUser!
-import { fetchUser } from "../utils/fetchUser";
 
 const PinDetail = ({ user }) => {
   // props user
@@ -25,9 +21,6 @@ const PinDetail = ({ user }) => {
   const [pinDetail, setPinDetail] = useState(null);
   const [comment, setComment] = useState("");
   const [addingComment, setAddingComment] = useState(false);
-
-  // user
-  const cmtUser = fetchUser();
 
   // pinId value
   const { pinId } = useParams();
@@ -229,17 +222,6 @@ const PinDetail = ({ user }) => {
           </div>
         </div>
       </div>
-      {/* recommened */}
-      {/* {pins?.length > 0 ? (
-        <>
-          <h2 className="text-center font-bold text-2xl mt-8 mb-4">
-            More Like This
-          </h2>
-          <MasonryLayout pins={pins} />
-        </>
-      ) : (
-        <Spinner msg={"Loading More Pins"} />
-      )} */}
     </>
   );
 };

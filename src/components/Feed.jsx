@@ -37,7 +37,6 @@ const Feed = () => {
     } else {
       // client => query request? show the pin but not products!
       client.fetch(feedQuery).then((data) => {
-        console.log("data:", data);
         // setPins[data]
         setPins(data);
         // stop loading

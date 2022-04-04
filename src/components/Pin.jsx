@@ -8,7 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
 // react-icons
-import { IoCloudDownload, IoArrowRedo } from "react-icons/io5";
+import { IoCloudDownload } from "react-icons/io5";
 import { AiTwotoneDelete, AiOutlineStar, AiFillStar } from "react-icons/ai";
 
 // client url
