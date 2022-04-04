@@ -16,9 +16,12 @@
     "react-masonry-css": "^1.0.16",
     "react-router-dom": "^6.2.2",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     "react-scripts": "5.0.0",
 >>>>>>> f1c4aa5 (✔ [eShop[React]])
+=======
+>>>>>>> 09b3b02 (✔[eShop[React]])
     "uuid": "^8.3.2",
     "web-vitals": "^2.1.4"
   },
@@ -48,9 +51,13 @@
   },
   "devDependencies": {
 <<<<<<< HEAD
+<<<<<<< HEAD
     "react-scripts": "5.0.0",
 =======
 >>>>>>> f1c4aa5 (✔ [eShop[React]])
+=======
+    "react-scripts": "5.0.0",
+>>>>>>> 09b3b02 (✔[eShop[React]])
     "autoprefixer": "^10.4.4",
     "postcss": "^8.4.12",
     "tailwindcss": "^3.0.23"
