@@ -12,45 +12,15 @@ import {
 import { RiHome7Fill } from "react-icons/ri";
 // logo
 import logo from "../assets/eShop-logo3.png";
-
-// category array
-const categories = [
-  { name: "iPhone 13 Max" },
-  { name: "iMac 2021" },
-  { name: "MackBook Pro 14 2021" },
-  { name: "iPad Pro" },
-  { name: "AirPods Pro" },
-  { name: "Apple Pencel" },
-  { name: "Adapter USB Type-C" },
-  { name: "iPhone 13 Max" },
-  { name: "iMac 2021" },
-  { name: "MackBook Pro 14 2021" },
-  { name: "iPad Pro" },
-  { name: "AirPods Pro" },
-  { name: "Apple Pencel" },
-  { name: "Adapter USB Type-C" },
-  { name: "iPhone 13 Max" },
-  { name: "iMac 2021" },
-  { name: "MackBook Pro 14 2021" },
-  { name: "iPad Pro" },
-  { name: "AirPods Pro" },
-  { name: "Apple Pencel" },
-  { name: "Adapter USB Type-C" },
-  { name: "iPhone 13 Max" },
-  { name: "iMac 2021" },
-  { name: "MackBook Pro 14 2021" },
-  { name: "iPad Pro" },
-  { name: "AirPods Pro" },
-  { name: "Apple Pencel" },
-  { name: "Adapter USB Type-C" },
-];
+// category arry[data => products]
+import { categories } from "../utils/data";
 
 // Active style
 const isActiveStyles =
-  "flex items-center px-2 md:px-1 gap-2 md:gap-3 font-extrabold transition-all duration-200 ease-in-out capitalize";
+  "flex items-center px-2 md:px-2 gap-2 md:gap-4 font-extrabold transition-all duration-150 ease-in-out capitalize";
 // notActive style
 const isNotActiveStyle =
-  "flex items-center px-5 md:px-5 gap-2 md:gap-3 text-gray-500 hover:text-black transition-all duration-200 ease-in-out capitalize";
+  "flex items-center px-2 md:px-5 gap-2 md:gap-4 text-gray-500 hover:text-black transition-all duration-150 ease-in-out capitalize";
 
 const NavBar = ({ user, searchTerm, setSearchTerm }) => {
   // user active && user action => user, search function[data]

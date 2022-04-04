@@ -8,16 +8,16 @@ import { client, Client } from "../client";
 import { userQuery } from "../utils/data";
 import Pin from "./Pin";
 
+// export fetchUser!
+import { fetchUser } from "../utils/fetchUser";
+
 const Home = () => {
   // user state[set => data]
   const [user, setUser] = useState(null);
   // scroll reference
   const scrollRef = useRef(null);
   // getting the Logged in user info from the localstorage
-  const userInfo =
-    localStorage.getItem("user") !== "undefined"
-      ? JSON.parse(localStorage.getItem("user"))
-      : localStorage.clear();
+  const userInfo = fetchUser();
 
   // useEffect => user query[request]
   useEffect(() => {

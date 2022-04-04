@@ -8,6 +8,7 @@
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
+    "audit-ci": "^6.1.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-google-login": "^5.2.2",
@@ -52,14 +53,18 @@
   "devDependencies": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "react-scripts": "5.0.0",
 =======
 >>>>>>> f1c4aa5 (✔ [eShop[React]])
 =======
     "react-scripts": "5.0.0",
 >>>>>>> 09b3b02 (✔[eShop[React]])
+=======
+>>>>>>> fe56727 (✔ [eShop[React]])
     "autoprefixer": "^10.4.4",
     "postcss": "^8.4.12",
+    "react-scripts": "5.0.0",
     "tailwindcss": "^3.0.23"
   }
 }
