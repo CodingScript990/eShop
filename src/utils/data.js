@@ -40,11 +40,6 @@ export const categories = [
     image:
       "https://stay-trendy.com/wp-content/uploads/2019/06/fashion-dresses-2020.jpg",
   },
-  {
-    name: "Communication",
-    image:
-      "https://sneakernews.com/wp-content/uploads/2014/04/white-on-white-air-force-1s-spring-2014.jpg",
-  },
 ];
 
 // user query
@@ -73,6 +68,7 @@ export const userCreatedPinsQuery = (userId) => {
       image
     },
     save[]{
+      _key,
       postedBy->{
         _id,
         userName,
@@ -102,6 +98,7 @@ export const userSavedPinsQuery = (userId) => {
       image
     },
     save[]{
+      _key,
       postedBy->{
         _id,
         userName,

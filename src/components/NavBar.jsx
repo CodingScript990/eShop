@@ -1,5 +1,7 @@
 // NavBar.jsx
 import React, { useState, useEffect, useRef } from "react";
+// index.css
+import "../index.css";
 // router
 import { Link, NavLink, useNavigate } from "react-router-dom";
 // react-icons
@@ -25,7 +27,7 @@ const isNotActiveStyle =
 const NavBar = ({ user, searchTerm, setSearchTerm }) => {
   // user active && user action => user, search function[data]
   // useNavigate
-  const navigate = useNavigate();
+  let navigate = useNavigate();
   // scroll State
   const [isScroll, setIsScroll] = useState(false);
   // use effect
@@ -43,6 +45,7 @@ const NavBar = ({ user, searchTerm, setSearchTerm }) => {
 
     scrollRef.current.scrollLeft < 199 ? setIsScroll(false) : setIsScroll(true);
   };
+
   return (
     <div className="flex flex-col">
       <div className="flex items-center w-full py-3">
@@ -66,24 +69,18 @@ const NavBar = ({ user, searchTerm, setSearchTerm }) => {
 
         {/* Product Button */}
         <div className="flex justify-center items-center">
-          {/* basket button */}
-          <Link
-            to="basket-pin"
-            className="p-2 justify-center font-bold text-base text-slate-400 border-none hover:text-slate-700 rounded-md duration-150 ease-in-out md:flex hidden"
-          >
-            <div class="flex flex-row font-bold text-lg">
-              <GiShoppingCart className="w-9 h-8" />0
-            </div>
-          </Link>
           {/* Add product */}
           {user?._id !== null ? (
-            <Link
-              to="create-pin"
-              className="p-2 justify-center font-bold text-base text-slate-400 border-none hover:text-slate-700 rounded-md duration-150 ease-in-out md:flex hidden"
-            >
-              <FaCartPlus className="w-9 h-6" />
-            </Link>
+            <>
+              <Link
+                to="create-pin"
+                className="p-2 justify-center font-bold text-base text-slate-400 border-none hover:text-slate-700 rounded-md duration-150 ease-in-out md:flex hidden"
+              >
+                <FaCartPlus className="w-9 h-6" />
+              </Link>
+            </>
           ) : null}
+
           {/* user profile */}
           <Link
             to={`user-profile/${user?._id}`}
@@ -92,7 +89,7 @@ const NavBar = ({ user, searchTerm, setSearchTerm }) => {
             {user?._id !== null ? (
               <img src={user?.image} className="rounded-full" alt="Pic" />
             ) : (
-              <Link to="/login" className="text-slate-600 text-lg font-bold ">
+              <Link to="/login" className="text-slate-600 text-lg font-bold">
                 Login
               </Link>
             )}
@@ -100,7 +97,10 @@ const NavBar = ({ user, searchTerm, setSearchTerm }) => {
         </div>
       </div>
       {/* categories */}
-      <div className="flex items-center w-full py-3">
+      <div
+        className="flex items-center w-full py-3"
+        style={{ margin: "0 auto" }}
+      >
         <NavLink
           to="/"
           className={({ isActive }) =>

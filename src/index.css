@@ -28,6 +28,16 @@ body::-webkit-scrollbar {
   min-height: 100vh;
 }
 
+.community:hover:before {
+  content: 'community';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -40px;
+  font-weight: bold;
+  color: rgb(46, 69, 120);
+}
+
 .hide_scrollbar::-webkit-scrollbar {
   display: none;
 }
