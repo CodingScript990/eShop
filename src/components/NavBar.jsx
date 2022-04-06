@@ -9,8 +9,6 @@ import { BiSearchAlt, BiChevronRight, BiChevronLeft } from "react-icons/bi";
 import { RiHome7Fill } from "react-icons/ri";
 // add pin
 import { FaCartPlus } from "react-icons/fa";
-// basket
-import { GiShoppingCart } from "react-icons/gi";
 
 // logo
 import logo from "../assets/eShop-logo4.png";

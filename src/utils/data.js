@@ -87,7 +87,7 @@ export const userSavedPinsQuery = (userId) => {
     image{
       asset->{
         url
-      }
+      },
     },
     _id,
     destination,
@@ -102,7 +102,7 @@ export const userSavedPinsQuery = (userId) => {
       postedBy->{
         _id,
         userName,
-        image
+        image,
       },
     },
   }`;
@@ -191,7 +191,7 @@ export const pinDetailQuery = (pinId) => {
         image
       },
     },
-    comments[]{
+    comment[]{
       comment,
       _key,
       postedBy->{
@@ -199,7 +199,8 @@ export const pinDetailQuery = (pinId) => {
         userName,
         image
       },
-    }
+      date,
+    },
   }`;
   // return query
   return query;
@@ -220,7 +221,7 @@ export const pinDeatilMorePinQuery = (pin) => {
     postedBy->{
       _id,
       userName,
-      image
+      image,
     },
     save[]{
       _key,
@@ -229,6 +230,16 @@ export const pinDeatilMorePinQuery = (pin) => {
         userName,
         image
       },
+    },
+    comment[]{
+      comment,
+      _key,
+      postedBy->{
+        _id,
+        userName,
+        image
+      },
+      date,
     },
   }`;
   // return query

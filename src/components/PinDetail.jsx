@@ -14,13 +14,18 @@ import Spinner from "./Spinner";
 
 const PinDetail = ({ user }) => {
   // props user
-  // comment datetime
-  const cmtDate = (date) => date.toISOString().slice(0, 10);
   // Pin data State
   const [pins, setPins] = useState(null);
   const [pinDetail, setPinDetail] = useState(null);
   const [comment, setComment] = useState("");
   const [addingComment, setAddingComment] = useState(false);
+
+  const options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
 
   // pinId value
   const { pinId } = useParams();
@@ -33,11 +38,14 @@ const PinDetail = ({ user }) => {
       // client api => pinId
       client
         .patch(pinId)
-        .setIfMissing({ comments: [] })
-        .insert("after", "comments[-1]", [
+        .setIfMissing({ comment: [] })
+        .insert("after", "comment[-1]", [
           {
             comment,
             _key: uuidv4,
+            date: {
+              _type: "date",
+            },
             postedBy: {
               _type: "postedBy",
               _ref: user._id,
@@ -159,6 +167,7 @@ const PinDetail = ({ user }) => {
                 <div className="flex justify-center mt-12">
                   <button
                     type="button"
+                    onClick={addingComment}
                     class="w-508 h-12 bg-slate-500 text-white text-lg hover:bg-slate-600 font-bold rounded cursor-pointer"
                   >
                     Buying
@@ -173,7 +182,7 @@ const PinDetail = ({ user }) => {
           <h2 className="mt-5 mb-2 text-2xl">
             {/* comments length 0? => toString "0" not 0? comments length! */}
             Comments(
-            {pinDetail.comments?.length > 0 ? pinDetail.comments.length : "0"})
+            {pinDetail.comment?.length > 0 ? pinDetail.comment.length : "0"})
           </h2>
           <hr />
           {/* container to post the comment */}
@@ -200,14 +209,14 @@ const PinDetail = ({ user }) => {
             />
           </div>
           <div className="max-h-370 overflow-y-auto hide_scrollbar">
-            {pinDetail?.comments?.map((comment, i) => (
+            {pinDetail?.comment?.map((cmt, i) => (
               <div
                 className="flex gap-2 mt-5 items-center bg-white rounded-lg"
                 key={i}
               >
                 {/* user image => profile */}
                 <img
-                  src={comment.postedBy.image}
+                  src={cmt.postedBy.image}
                   alt="user-img"
                   className="w-10 h-10 rounded-full object-cover cursor-pointer"
                 />
@@ -216,8 +225,10 @@ const PinDetail = ({ user }) => {
                   className="w-full flex flex-row justify-between"
                   style={{ fontSize: "17px" }}
                 >
-                  <p className="pl-2">{comment.comment}</p>
-                  <p className="pr-2">{cmtDate(new Date())}</p>
+                  <p className="pl-2">{cmt.comment}</p>
+                  <p className="pr-2">
+                    {new Date(cmt.date).toLocaleDateString("ko-KR", options)}
+                  </p>
                 </div>
               </div>
             ))}
