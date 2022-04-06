@@ -1,16 +1,33 @@
 <h1> eShop[React]</h1>
 
-<h2>💻FE(Front-End)</h2>
+<h2>💻FE(Front-End) & 💻BE(<a href="https://github.com/CodingScript990/eShop/blob/main-back/README.md">Back-End</a>)</h2>
+<p>백엔드는 파란색 글자를 누르시면 됩니다! :)</p>
 <br/>
-✔ [기술 스텍]
+<h3>[기술 스택]</h3>
  - React, JavaScript, Fetch API, Sanity.io[Platform], Tailwindcss[CSS => Fram-Work]
  - React-google-login, React-icons[Package], React-router-dom@v6, Uuidv4
 <br/>
-✔ [기능]
- - 소셜 로그인[Google], 판매제품 업로드[CRD]페이지, 판매제품 디테일 페이지, 찜하기, 클라이언트 페이지, 물품 검색하기, 카테고리별 정렬기능
+<h3>[구현 기능]</h3>
+ - 계정
+<ul>
+  <li>소셜 로그인[Google], 로그아웃</li>
+</ul> 
+ - 제품 
+ <ul>
+  <li>판매제품 업로드[CRD]페이지</li>
+  <li>판매제품 디테일 페이지</li>
+  <li>찜하기</li>
+  <li>물품 검색하기</li>
+  <li>카테고리별 정렬기능</li>
+</ul>
+ - 유저
+<ul>
+  <li>클라이언트 페이지</li>
+  <li>제품에 댓글 기능</li>
+</ul>
 <br/>
 <br/>
-<h2>💻[View]</h2>
+<h2>View</h2>
 <br/>
 <br/>
 - [로그인UI]
