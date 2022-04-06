@@ -42,6 +42,11 @@ export default {
       type: "postedBy",
     },
     {
+      name: "price",
+      title: "price",
+      type: "string",
+    },
+    {
       name: "save",
       title: "Save",
       type: "array",

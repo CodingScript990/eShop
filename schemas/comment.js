@@ -13,5 +13,15 @@ export default {
       title: "Comment",
       type: "string",
     },
+    {
+      name: "date",
+      title: "date",
+      type: "datetime",
+      options: {
+        dateFormat: "YYYY-MM-DD",
+        timeFormat: "HH:mm",
+        calendarTodayLabel: "Today",
+      },
+    },
   ],
 };
