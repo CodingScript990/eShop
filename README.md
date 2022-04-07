@@ -1,12 +1,12 @@
 <h1> eShop[React]</h1>
 
 <h2>💻FE(Front-End) & 💻BE(<a href="https://github.com/CodingScript990/eShop/blob/main-back/README.md">Back-End</a>)</h2>
-<p>백엔드는 파란색 글자를 누르시면 됩니다! :)</p>
-<div>
- <p>코드리뷰 및 후기 : T-Story[<a href="https://code-source.tistory.com/105">Blog</a>]</p>
-</div>
+<ol>
+ <li>백엔드는 파란색 글자를 누르시면 됩니다! :)</li>
+ <li>코드리뷰 및 후기 : T-Story[<a href="https://code-source.tistory.com/105">Blog</a>]</li>
+</ol>
 <br/>
-<h3>[기술 스택]</h3>
+<h3>[기술 스택] - Front-End</h3>
 <ul>
  <li>React</li>
  <li>JavaScript</li>
