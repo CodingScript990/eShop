@@ -2,7 +2,7 @@
 
 <h2>💻BE(Back-End)</h2>
 <br/>
-<h3>[기술 스택]</h3>
+<h3>[기술 스택] - Back-End</h3>
 <br/>
   - Node, JavaScript, Sanity Studio[React.js로 구축된 오픈 소스 CMS]
 <br/>
