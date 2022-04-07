@@ -2,10 +2,22 @@
 
 <h2>💻FE(Front-End) & 💻BE(<a href="https://github.com/CodingScript990/eShop/blob/main-back/README.md">Back-End</a>)</h2>
 <p>백엔드는 파란색 글자를 누르시면 됩니다! :)</p>
+<div>
+ <p>코드리뷰 및 후기 : T-Story[<a href="https://code-source.tistory.com/105">Blog</a>]</p>
+</div>
 <br/>
 <h3>[기술 스택]</h3>
- - React, JavaScript, Fetch API, Sanity.io[Platform], Tailwindcss[CSS => Fram-Work]
- - React-google-login, React-icons[Package], React-router-dom@v6, Uuidv4
+<ul>
+ <li>React</li>
+ <li>JavaScript</li>
+ <li>Fetch API</li>
+ <li>Sanity[React CMS => Platform]</li>
+ <li>Tailwindcss[CSS => Fram-Work]</li>
+ <li>React-google-login[Package]</li>
+ <li>React-icons[Package]</li>
+ <li>React-router-dom@v6</li>
+ <li>Uuidv4</li>
+</ul>
 <br/>
 <h3>[구현 기능]</h3>
  - 계정
